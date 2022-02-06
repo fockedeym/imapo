@@ -1,0 +1,21 @@
+<div>
+  <h3>
+    Stretch histogram
+  </h3>
+  <p>The Histogram stretching makes sure the lowest pixel value in the image is zero and the highest pixel value is set to 255, it normailzes the other pixel values in consequence. <a href="https://en.wikipedia.org/wiki/Normalization_(image_processing)"> See here for more details</a></p>
+  <div [formGroup]="stretchForm" class="d-flex flex-row mb-4">
+    <div class=" mx-2 my-auto" >
+      <h5 >Domain selection: </h5>
+    </div>
+    <div class=" mx-2 my-auto" >
+      <select formControlName="selectedDomain" class="form-control m-1" ng-options="domain as domain for domain in imageDomains">
+        <option *ngFor="let domain of imageDomains" [value]="domain"> {{domain}}</option>
+      </select>
+    </div>
+
+    <div class=" mx-2">
+      <button type="button" class="btn btn-primary" name="button" [disabled]="!stretchForm.valid" (click)="uploadFileStrech()">Stretch histogram</button>
+    </div>
+  </div>
+  <app-imapo-image [img]="imageStretch" ></app-imapo-image>
+</div>

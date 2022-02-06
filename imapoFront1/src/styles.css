@@ -1,0 +1,9 @@
+.form-control{
+    width:auto;
+}
+
+ /* ::ng-deep .ngxImageZoomContainer > img{
+  max-width: 30% !important;
+  height: auto!important;
+  border: 1px solid !important;
+} */

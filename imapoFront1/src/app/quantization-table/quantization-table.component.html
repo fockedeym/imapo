@@ -1,0 +1,23 @@
+<div>
+  <h3>
+    JPEG parameters
+  </h3>
+  <p>Give the quantization tables and the sampling used in the jpeg compression process. ONLY for JPEG images!</p>
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!quantTableForm.valid" (click)="uploadQuantTable()">Get jpeg parameters</button>
+    <div *ngIf="quantTables">
+      <h4> Quantization tables </h4>
+        <div class="d-flex flex-row">
+          <div *ngFor="let table of quantTables">
+              <table class="table table-bordered w-auto mx-5 my-3">
+                <tbody>
+                  <tr *ngFor = "let row of table">
+                    <td *ngFor = "let val of row">{{val}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <h4> Jpeg sampling : {{sampling}} </h4>
+    </div>
+
+</div>

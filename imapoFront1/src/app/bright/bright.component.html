@@ -1,0 +1,13 @@
+<div>
+  <h3>
+    Bright
+  </h3>
+  <p>The bright function add to each pixel value the value of this pixel times a coefficient. The coefficient can have a value between -1 and 254. </p>
+  <div [formGroup]="brightForm" class="d-flex flex-row mb-5">
+    <h5>Coefficient:</h5>
+    <input class="mx-2" formControlName="brightnessLevel" type="number">
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!brightForm.valid" (click)="uploadFileBrightness()">Change brightness</button>
+  </div>
+  <app-imapo-image [img]="imageBright"></app-imapo-image>
+
+</div>

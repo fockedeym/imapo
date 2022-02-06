@@ -1,0 +1,7 @@
+
+
+<div class="mb-3">
+  <label for="formFile" class="form-label">Select your image</label>
+  <input class="form-control" type="file" accept=".jpg,.png,.jpeg" id="formFile" (change)="handleFileInput($event.target.files[0])">
+</div>
+<app-imapo-image [img]="imgURL" ></app-imapo-image>

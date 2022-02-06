@@ -1,0 +1,10 @@
+<div>
+  <h3>
+    Human segmentation
+  </h3>
+  <p>This deeplearning function was meant to detect and crop humans on photos, the rest of the image is transparent.</p>
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!humanSegForm.valid" (click)="uploadFileHumanSeg()">Segment humans</button>
+  <div class="mt-2">
+    <app-imapo-image [img]="imageHumanSeg" ></app-imapo-image>
+  </div>
+</div>

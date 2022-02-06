@@ -1,0 +1,19 @@
+  <h3 class="m-1">
+    Histogram equalization
+  </h3>
+<p>The histogram equalization is an agorithme that aims an uniform distribution of the pixel value histogram. <a href="https://en.wikipedia.org/wiki/Histogram_equalization"> See here more details here</a></p>
+  <div [formGroup]="histoForm" class="d-flex flex-row mb-4">
+    <div class=" mx-2 my-auto" >
+      <h5 >Domain selection: </h5>
+    </div>
+    <div class=" mx-2 my-auto" >
+      <select formControlName="selectedDomain" class="form-control m-1" ng-options="domain as domain for domain in imageDomains">
+        <option *ngFor="let domain of imageDomains" [value]="domain"> {{domain}}</option>
+      </select>
+    </div>
+
+    <div class=" mx-2">
+      <button type="button" class="btn btn-primary" name="button" [disabled]="!histoForm.valid" (click)="uploadFileHistoEqual()">Apply histogram equalization</button>
+    </div>
+  </div>
+<app-imapo-image [img]="imageHistoEqual" ></app-imapo-image>

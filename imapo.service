@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve imapo
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+
+WorkingDirectory=/usr/share/nginx/imapoFlask
+Environment="PATH=/usr/share/nginx/imapoFlask/env/bin"
+ExecStart=/usr/share/nginx/imapoFlask/env/bin/uwsgi --ini imapo.ini
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+<div>
+  <h3>
+    Error level analysis
+  </h3>
+  <p>The error level analysis gives the difference between the image and the image compressed with jpeg at a specific quality value (between 1 and 100). The scale allows us to multiply the difference to make it more visible. </p>
+  <div [formGroup]="elaForm">
+    JPEG quality <input formControlName="quality" class="form-control" type="number"><br>
+    Scale <input formControlName="scale" class="form-control" type="number"><br>
+  </div>
+
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!elaForm.valid" (click)="uploadFileEla()">Get ELA</button>
+
+  <div class="mt-2">
+    <app-imapo-image [img]="imageEla" ></app-imapo-image>
+  </div>
+</div>

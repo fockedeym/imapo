@@ -1,0 +1,41 @@
+<h1>Exif image data</h1>
+  <div class="mt-3">
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!exifForm.valid" (click)="uploadFileExif()">Get EXIF data</button>
+  </div>
+<div *ngIf="showExif">
+  <div *ngIf="(exif) != '{}'; else NoExifData" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">EXIF Field</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exifElem of exif | keyvalue">
+          <td>{{exifElem.key}}</td>
+          <td>{{exifElem.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="showGPSInfo">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">GPS Field</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gpsElem of GPSInfo | keyvalue">
+            <td>{{gpsElem.key}}</td>
+            <td>{{gpsElem.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+  <ng-template #NoExifData>
+    No exif data
+  </ng-template>
+</div>

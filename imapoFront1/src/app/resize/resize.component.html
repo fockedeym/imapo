@@ -1,0 +1,27 @@
+<div>
+  <h3>
+    Resize
+  </h3>
+  <p>Change the size of the image to specific pixel size if the pixel option is selected or to a proportion of the original dimension if the porcent option is selected.</p>
+  <div [formGroup]="resizeForm">
+    <div class="d-flex flex-row" >
+      <div class=" mx-2 my-auto" >
+        <h5 > Resize type selection: </h5>
+      </div>
+      <div class=" mx-2 my-auto" >
+            <select formControlName="resizeType" class="form-control m-1">
+              <option  value="pixel">pixel</option>
+              <option  value="percent">%</option>
+            </select>
+      </div>
+    </div>
+    X value <input formControlName="x" class="form-control" type="number"><br>
+    Y value <input formControlName="y" class="form-control" type="number"><br>
+  </div>
+
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!resizeForm.valid" (click)="uploadFileResize()">Resize image</button>
+
+  <div class="mt-2">
+    <app-imapo-image [img]="imageResize" ></app-imapo-image>
+  </div>
+</div>

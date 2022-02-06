@@ -1,0 +1,61 @@
+<div>
+  <div [formGroup]="filterForm">
+    <div class="d-flex flex-row" >
+      <div class=" mx-2 my-auto" >
+        <h5 > Type of filter selection: </h5>
+      </div>
+      <div class=" mx-2 my-auto" >
+            <select formControlName="filterType" (change)="setNullFilter()" class="form-control m-1">
+              <option  value="custom">custom</option>
+              <option  value="standard">standard</option>
+            </select>
+      </div>
+    </div>
+    <div *ngIf="filterForm.get('filterType').value==='custom'">
+      <h5 > Create your custom filter: </h5>
+      X size <input formControlName="customX" class="form-control" (change)="setNullFilter()" type="number"><br>
+      Y size <input formControlName="customY" class="form-control" (change)="setNullFilter()" type="number"><br>
+       <div *ngIf="filterForm.get('customX').value && filterForm.get('customY').value">
+         <h6 > Filter values </h6>
+        <table class="table table-bordered w-auto">
+          <tbody>
+            <tr *ngFor = "let row of filterForm.get('filter').value; let y = index">
+              <td *ngFor = "let val of row; let x = index;">
+                <input class="form-control mat-elem" [value]=val (change)="setValueToFilter($event,x,y)" type="number">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
+    </div>
+
+    <div *ngIf="filterForm.get('filterType').value==='standard'">
+      <div class="d-flex flex-row" >
+        <div class=" mx-2 my-auto" >
+          <h5 > Choose your standard filter: </h5>
+        </div>
+        <div class=" mx-2 my-auto" >
+          <select formControlName="filter" class="form-control m-1">
+            <option *ngFor="let filter of standardFilters| keyvalue" [ngValue]="filter.value"> {{filter.key}}</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="table table-bordered w-auto mx-5 my-3">
+        <tbody>
+          <tr *ngFor = "let row of filterForm.get('filter').value">
+            <td *ngFor = "let val of row">
+              {{val}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!filterForm.valid" (click)="uploadFileFilter()">Filter image</button>
+
+  <div class="mt-2">
+    <app-imapo-image [img]="imageFiltered" ></app-imapo-image>
+  </div>
+</div>

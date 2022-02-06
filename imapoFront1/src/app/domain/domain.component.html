@@ -1,0 +1,56 @@
+<div class="jumbotron">
+  <h1 class="display-4">Image domains</h1>
+  <p>This page gives a representation of the image in different color domains
+  <a href="https://en.wikipedia.org/wiki/RGB_color_model"> RGB </a>,
+  <a href="https://en.wikipedia.org/wiki/HSL_and_HSV"> HSV </a> and
+  <a href="https://en.wikipedia.org/wiki/YUV"> YUV </a>. 
+</p>
+  <app-image-loader></app-image-loader>
+  <div class="mt-3">
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!imageLoaded" (click)="uploadFileDomain()">Get domains</button>
+  </div>
+  <div *ngIf="showDomains">
+    <div  class="d-flex flex-col">
+      <div class="m-2 text-center">
+        <h5>Red Channel</h5>
+        <img class="image-domain" [src]=imageRed>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Blue channel</h5>
+        <img class="image-domain" [src]=imageBlue>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Green Channel</h5>
+        <img class="image-domain" [src]=imageGreen>
+      </div>
+    </div>
+    <div class="d-flex flex-col">
+      <div class="m-2 text-center">
+        <h5>Hue</h5>
+        <img class="image-domain" [src]=imageHue>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Saturation</h5>
+        <img class="image-domain" [src]=imageSaturation>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Value</h5>
+        <img class="image-domain" [src]=imageValue>
+      </div>
+    </div>
+    <div class="d-flex flex-col">
+      <div class="m-2 text-center">
+        <h5>Luma (Y)</h5>
+        <img class="image-domain" [src]=imageY>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Chromance Blue (U)</h5>
+        <img class="image-domain" [src]=imageU>
+      </div>
+      <div class="m-2 text-center">
+        <h5>Chromance Red (V)</h5>
+        <img class="image-domain" [src]=imageV>
+      </div>
+    </div>
+  </div>
+</div>

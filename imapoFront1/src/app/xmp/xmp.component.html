@@ -1,0 +1,27 @@
+<h1>XMP image data</h1>
+  <div class="mt-3">
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!xmpForm.valid" (click)="uploadFileXmp()">Get XMP data</button>
+  </div>
+<div *ngIf="showXmp">
+  <div *ngIf="xmp.value != '{}'; else NoXmpData" >
+
+  <!-- <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">XMP Field</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let xmpElem of xmp | keyvalue">
+        <td>{{xmpElem.key}}</td>
+        <td style="white-space: pre-wrap;">{{xmpElem.value}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <p style="white-space: pre-wrap;">{{xmp.value}}</p>
+</div>
+<ng-template #NoXmpData>
+  No xmp data
+</ng-template>
+</div>
