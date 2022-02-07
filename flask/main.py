@@ -16,7 +16,7 @@ from base64 import encodebytes
 from modelCollection import ModelCollection
 app = Flask(__name__)
 
-modelCollection=ModelCollection(os.getcwd())
+modelCollection=ModelCollection("./")
 
 @app.route("/api/upload", methods=["POST"])
 def save():

@@ -1,3 +1,4 @@
 /flask/env
 /images
-flask/__pycache__
+/flask/__pycache__
+/flask/models/humanSeg/model.h5

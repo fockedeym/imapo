@@ -18,7 +18,7 @@ class HumanSeg:
         self.image_size = 512
     def preprocess(self, image):
         image = tf.image.resize(image, (self.image_size, self.image_size))
-        return tf.cast(image, tf.float32) / 255.0
+        return tf.math.scalar_mul(1/255,image)
     def infer(self, image=None):
         image=np.asarray(Image.open(image)).astype(np.float32)
         if len(image.shape)==2: #Gray image

@@ -1,4 +1,4 @@
-/imapoFront1/node_modules
-/imapoFront1/.git
-/flask/env
-/flask/models/humanSeg/model.h5
+imapoFront1/node_modules/
+imapoFront1/.git/
+.git/
+flask/env/
