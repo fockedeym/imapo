@@ -1,5 +1,4 @@
 from PIL import Image
-import os
 import cv2
 import numpy as np
 
@@ -33,5 +32,3 @@ def stretch(img):
     maxVal=np.max(img)
     retval=((img-minVal)/(maxVal-minVal))*255
     return retval.astype(np.uint8)
-
-#histoStretch(os.path.join(os.getcwd(),'flask','gris.jpeg'),"GRAY").save(os.path.join(os.getcwd(),'flask','gris2.jpg'))

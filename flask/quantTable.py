@@ -1,10 +1,6 @@
 from PIL import Image,JpegImagePlugin
-import os
-import cv2
-import numpy as np
-from io import BytesIO
-import matplotlib.pyplot as plt
 def quantTable(file):
+    """Function that returns the jpeg quantization tables and the jpeg sampling type"""
     img = Image.open(file)
     sampling="No sampling"
     tables=img.quantization
@@ -16,5 +12,3 @@ def quantTable(file):
     elif(samplingVal==2):
         sampling="4:2:0"
     return (tables, sampling)
-
-#quantTable(os.path.join(os.getcwd(),'flask',"images",'soleil.jpg'))

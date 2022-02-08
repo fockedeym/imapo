@@ -24,10 +24,5 @@ def histoEqual(file,selectedDomain):
         img[:,:,2] = cv2.equalizeHist(img[:,:,2])
         img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
     else:
-        print("default")
         pass
     return 	Image.fromarray(img)
-
-
-
-#histoEqual(os.path.join(os.getcwd(),'flask','gris.jpeg'),"GREY").save(os.path.join(os.getcwd(),'flask','gris2.jpg'))

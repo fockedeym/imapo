@@ -9,6 +9,7 @@ import exifread
 import json
 
 def exif(file):
+    """This function the exif information in a json format"""
     img = Image.open(file)
     retval={}
     exif_data = img._getexif()
@@ -16,6 +17,7 @@ def exif(file):
         return "{}"
     for k, v in exif_data.items():
         if k in PIL.ExifTags.TAGS:
+            #Some types have to be typecasted in order to be "jsonify"
             if isinstance(v,PIL.TiffImagePlugin.IFDRational):
                 v=str(v)
             if isinstance(v,bytes):
@@ -33,20 +35,23 @@ def exif(file):
                     except:
                         v="error decoding"
             if (PIL.ExifTags.TAGS[k]=="GPSInfo"):
-                newGPSInfo={}
-                for key in v.keys():
-                    decode = PIL.ExifTags.GPSTAGS.get(key,key)
-                    newGPSInfo[decode] = v[key]
-                    if isinstance(v[key],bytes):
-                        newGPSInfo[decode]=int.from_bytes(v[key], byteorder='big')
-                    if isinstance(v[key],PIL.TiffImagePlugin.IFDRational):
-                        newGPSInfo[decode]=str(v[key])
-                    if isinstance(v[key],tuple):
-                        newGPSInfo[decode]=[str(x) for x in v[key]]
-                v=newGPSInfo
+                v=handleGPSInfoTag(v)
             retval[PIL.ExifTags.TAGS[k]]=v
     json.dumps(retval)
     return 	retval
+
+def handleGPSInfoTag(v):
+    newGPSInfo={}
+    for key in v.keys():
+        decode = PIL.ExifTags.GPSTAGS.get(key,key)
+        newGPSInfo[decode] = v[key]
+        if isinstance(v[key],bytes):
+            newGPSInfo[decode]=int.from_bytes(v[key], byteorder='big')
+        if isinstance(v[key],PIL.TiffImagePlugin.IFDRational):
+            newGPSInfo[decode]=str(v[key])
+        if isinstance(v[key],tuple):
+            newGPSInfo[decode]=[str(x) for x in v[key]]
+    return newGPSInfo
 
 def hexaToExifCompo(val):
     retval=""
@@ -78,6 +83,3 @@ def hexaToExifSceneType(val):
         if b==1:
             return " Directly photographed"
         return ""
-#a = exif(os.path.join(os.getcwd(),'flask',"images",'campagne.jpg'))
-#print(exif(os.path.join(os.getcwd(),'flask',"images",'campagne.jpg')))
-#print(exif(os.path.join(os.getcwd(),'flask',"images",'campagne.jpg')))

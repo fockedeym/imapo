@@ -1,7 +1,7 @@
-
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import backend as K
+#source: https://github.com/nikhilroxtomar/Human-Image-Segmentation-with-DeepLabV3Plus-in-TensorFlow
 
 def iou(y_true, y_pred):
     def f(y_true, y_pred):

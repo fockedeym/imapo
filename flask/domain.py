@@ -1,5 +1,4 @@
 from PIL import Image
-import os
 import io
 import cv2
 import numpy as np
@@ -8,22 +7,23 @@ import matplotlib.pyplot as plt
 def domain(file):
     im = Image.open(file)
     img=np.array(im, np.uint8)
+    #If the image is a 2D gray turns it to RGB
     if(len(img.shape)==2):
         img=np.stack((img,)*3, axis=-1)
-    print(img.shape)
+    #Create and fill the individual RGB component
     imgr=np.zeros(img.shape, np.uint8)
     imgg=np.zeros(img.shape, np.uint8)
     imgb=np.zeros(img.shape, np.uint8)
-
     imgr[:,:,0]=img[:,:,0]
     imgg[:,:,1]=img[:,:,1]
     imgb[:,:,2]=img[:,:,2]
+    #Conserve the image transpiracy
     if(img.shape[2]==4):
         imgr[:,:,3]=img[:,:,3]
         imgg[:,:,3]=img[:,:,3]
         imgb[:,:,3]=img[:,:,3]
 
-
+    #Exctract hsv and yuv and set a corresponding color scale in matplotlib
     imghsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
     imgh = getImageWithColormap(imghsv[:,:,0],"hsv")
     imgs = getImageWithColormap(imghsv[:,:,1],"gray")
@@ -34,10 +34,6 @@ def domain(file):
     imgy = getImageWithColormap(imgyuv[:,:,0],"gray")
     imgu = getImageWithColormap(imgyuv[:,:,1],"Blues")
     imgv = getImageWithColormap(imgyuv[:,:,2],"Reds")
-
-
-
-
 
     return 	(Image.fromarray(imgr),Image.fromarray(imgg),Image.fromarray(imgb), \
     imgh,imgs,imgValue, \
@@ -53,5 +49,3 @@ def getImageWithColormap(img, cmap):
     plt.savefig(img_buf, format='png')
     im = Image.open(img_buf)
     return im
-
-#domain(os.path.join(os.getcwd(),'flask','images','ronaldo.png'))
