@@ -35,7 +35,7 @@
           <h5 > Choose your standard filter: </h5>
         </div>
         <div class=" mx-2 my-auto" >
-          <select formControlName="filter" class="form-control m-1">
+          <select formControlName="filter" class="form-control m-1" (change)="formChange()" >
             <option *ngFor="let filter of standardFilters| keyvalue" [ngValue]="filter.value"> {{filter.key}}</option>
           </select>
         </div>
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-    <button type="button" class="btn btn-primary" name="button" [disabled]="!filterForm.valid" (click)="uploadFileFilter()">Filter image</button>
+    <!-- <button type="button" class="btn btn-primary" name="button" [disabled]="!filterForm.valid" (click)="uploadFileFilter()">Filter image</button> -->
 
   <div class="mt-2">
     <app-imapo-image [img]="imageFiltered" ></app-imapo-image>

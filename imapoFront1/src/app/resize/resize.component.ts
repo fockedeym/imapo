@@ -20,11 +20,17 @@ export class ResizeComponent implements OnInit {
     });
     if(this.imapoService.fileToUpload)
       this.resizeForm.patchValue({fileToUpload: true})
-    this.imapoService.fileToUploadChange.subscribe((f:File) => this.resizeForm.patchValue({fileToUpload: true}),);
+    this.imapoService.fileToUploadChange.subscribe((f:File) =>{
+         this.resizeForm.patchValue({fileToUpload: true})
+         this.formChange()
+     });
 
   }
 
-
+  formChange(event:any=null){
+      if(this.resizeForm.valid)
+        this.uploadFileResize()
+  }
   uploadFileResize() {
       var parameters={
         x:this.resizeForm.get('x').value,

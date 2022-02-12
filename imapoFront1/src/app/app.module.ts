@@ -29,6 +29,9 @@ import { MetadataComponent } from './metadata/metadata.component';
 import { XmpComponent } from './xmp/xmp.component';
 import { QuantizationTableComponent } from './quantization-table/quantization-table.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { MorphoComponent } from './morpho/morpho.component';
+import { ThresholderComponent } from './thresholder/thresholder.component';
+import { MorphoAppComponent } from './morpho-app/morpho-app.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,10 @@ import { IntroductionComponent } from './introduction/introduction.component';
     MetadataComponent,
     XmpComponent,
     QuantizationTableComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    MorphoComponent,
+    ThresholderComponent,
+    MorphoAppComponent
   ],
   imports: [
     BrowserModule,

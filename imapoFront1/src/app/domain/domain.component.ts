@@ -26,8 +26,8 @@ export class DomainComponent implements OnInit {
   imageLoaded:Boolean;
   ngOnInit(): void {
     this.imageLoaded=this.imapoService.fileToUpload !== undefined
-    console.log(this.imageLoaded)
     this.imapoService.fileToUploadChange.subscribe((f:File) =>{
+      this.uploadFileDomain()
       this.imageLoaded=true;
     },);
 

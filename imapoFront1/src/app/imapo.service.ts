@@ -12,8 +12,8 @@ export class ImapoService {
     fileToUploadChange:Subject<File>= new Subject<File>();
 
     setFileToUpload(f:File){
-      this.fileToUploadChange.next(f)
       this.fileToUpload=f
+      this.fileToUploadChange.next(f)
     }
 
     async loadDefaultImage(){

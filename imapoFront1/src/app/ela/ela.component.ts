@@ -17,13 +17,23 @@ export class ElaComponent implements OnInit {
     this.elaForm = this.fb.group({
       fileToUpload:['',Validators.required],
       quality: ['80', [Validators.required,Validators.min(0),Validators.max(100)]],
-      scale: ['1',[Validators.required,Validators.min(0)]],
+      scale: ['10',[Validators.required,Validators.min(0)]],
     });
     if(this.imapoService.fileToUpload)
       this.elaForm.patchValue({fileToUpload: true})
-    this.imapoService.fileToUploadChange.subscribe((f:File) => this.elaForm.patchValue({fileToUpload: true}),);
+      this.uploadFileEla();
+    this.imapoService.fileToUploadChange.subscribe((f:File) => {
+        this.elaForm.patchValue({fileToUpload: true},);
+        this.uploadFileEla();
+    }
+    );
+
   }
 
+  formChange(event:any=null){
+      if(this.elaForm.valid)
+        this.uploadFileEla()
+  }
   uploadFileEla() {
       var parameters={
         quality:Number(this.elaForm.get('quality').value),

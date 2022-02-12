@@ -31,7 +31,15 @@ export class FilterSelectionComponent implements OnInit {
     });
     if(this.imapoService.fileToUpload)
       this.filterForm.patchValue({fileToUpload: true})
-    this.imapoService.fileToUploadChange.subscribe((f:File) => this.filterForm.patchValue({fileToUpload: true}),);
+    this.imapoService.fileToUploadChange.subscribe((f:File) => {
+        this.filterForm.patchValue({fileToUpload: true});
+        this.formChange()
+    });
+  }
+
+  formChange(event:any=null){
+      if(this.filterForm.valid)
+        this.uploadFileFilter()
   }
 
   setNullFilter(){
@@ -51,6 +59,7 @@ export class FilterSelectionComponent implements OnInit {
     var newFilter=filter.map(x => [...x])
     newFilter[y][x]=Number(event.target.value)
     this.filterForm.patchValue({filter: newFilter})
+    this.formChange()
   }
   uploadFileFilter() {
       var parameters={

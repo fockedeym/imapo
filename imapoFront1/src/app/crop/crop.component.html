@@ -4,11 +4,11 @@
   </h3>
   <p> Select a subpart of the image. The indexation of pixels starts at 1 and the "start" and "end" values set the (inclusive) limits of the chosen subsection.</p>
   <div [formGroup]="cropForm">
-    X start <input formControlName="xstart" class="form-control" type="number"><br>
-    X end <input formControlName="xend" class="form-control" type="number"><br>
-    Y start <input formControlName="ystart" class="form-control" type="number"><br>
-    Y end <input formControlName="yend" class="form-control" type="number"><br>
-    <button type="button" class="btn btn-primary" name="button" [disabled]="!cropForm.valid" (click)="uploadFileCrop()">Crop image</button>
+    X start <input formControlName="xstart" class="form-control" type="number" (input)="formChange()"><br>
+    X end <input formControlName="xend" class="form-control" type="number" (input)="formChange()" ><br>
+    Y start <input formControlName="ystart" class="form-control" type="number" (input)="formChange()" ><br>
+    Y end <input formControlName="yend" class="form-control" type="number" (input)="formChange()"><br>
+    <!-- <button type="button" class="btn btn-primary" name="button" [disabled]="!cropForm.valid" (click)="uploadFileCrop()">Crop image</button> -->
   </div>
 
   <div class="mt-2">

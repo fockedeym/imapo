@@ -10,9 +10,6 @@ export class ImageLoaderComponent implements OnInit {
 
   constructor(private imapoService: ImapoService) { }
 
-  myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";
-    myFullresImage="https://wittlock.github.io/ngx-image-zoom/assets/fullres.jpg";
-  title = 'imapoFront1';
   imgURL:any;
   async ngOnInit(): Promise<void> {
     if(this.imapoService.fileToUpload ===undefined){

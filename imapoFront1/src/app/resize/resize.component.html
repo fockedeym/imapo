@@ -9,17 +9,17 @@
         <h5 > Resize type selection: </h5>
       </div>
       <div class=" mx-2 my-auto" >
-            <select formControlName="resizeType" class="form-control m-1">
+            <select formControlName="resizeType" class="form-control m-1" (input)="formChange()">
               <option  value="pixel">pixel</option>
               <option  value="percent">%</option>
             </select>
       </div>
     </div>
-    X value <input formControlName="x" class="form-control" type="number"><br>
-    Y value <input formControlName="y" class="form-control" type="number"><br>
+    X value <input formControlName="x" class="form-control" type="number" (input)="formChange()"><br>
+    Y value <input formControlName="y" class="form-control" type="number" (input)="formChange()"><br>
   </div>
 
-    <button type="button" class="btn btn-primary" name="button" [disabled]="!resizeForm.valid" (click)="uploadFileResize()">Resize image</button>
+    <!-- <button type="button" class="btn btn-primary" name="button" [disabled]="!resizeForm.valid" (click)="uploadFileResize()">Resize image</button> -->
 
   <div class="mt-2">
     <app-imapo-image [img]="imageResize" ></app-imapo-image>

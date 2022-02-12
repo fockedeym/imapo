@@ -14,6 +14,10 @@ import os
 from io import BytesIO
 from base64 import encodebytes
 from modelCollection import ModelCollection
+from threshold import threshold
+from morpho import morpho
+
+
 app = Flask(__name__)
 
 modelCollection=ModelCollection("./")
@@ -109,11 +113,34 @@ def filtering():
     image=filter(file, filterKernel)
     return serve_pil_image(image)
 
+@app.route("/api/morpho", methods=["POST"])
+def morphoOperation():
+    file=request.files['fileKey']
+    kernel=request.form.get('kernel')
+    operation=request.form.get('operation').strip("\"")
+
+    image=morpho(file, kernel, operation)
+    return serve_pil_image(image)
+
 @app.route("/api/humanSeg", methods=["POST"])
 def HumanSegmentation():
     file=request.files['fileKey']
     image=modelCollection.humanSeg.infer(file)
     return serve_pil_image(image)
+
+@app.route("/api/threshold", methods=["POST"])
+def thresholder():
+    file=request.files['fileKey']
+    rstart=int(request.form.get('rstart'))
+    gstart=int(request.form.get('gstart'))
+    bstart=int(request.form.get('bstart'))
+    rend=int(request.form.get('rend'))
+    gend=int(request.form.get('gend'))
+    bend=int(request.form.get('bend'))
+
+    image=threshold(file,rstart,gstart,bstart,rend,gend,bend)
+    return serve_pil_image(image)
+
 
 def get_response_image(pil_img):
     byte_arr = BytesIO()

@@ -1,0 +1,81 @@
+<h3 class="my-4">
+  Apply morphological operator
+</h3>
+<div>
+  <div [formGroup]="morphoForm">
+    <div class="d-flex flex-row" >
+        <div class=" mx-2 my-auto" >
+          <h5 > Type of morphological operation: </h5>
+        </div>
+        <div class=" mx-2 my-auto" >
+              <select formControlName="morphoOperationType" class="form-control m-1">
+                <option  value="dilation">dilation</option>
+                <option  value="dilation">erosion</option>
+                <option  value="closing">closing</option>
+                <option  selected="opening" value="standard">opening</option>
+              </select>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row" >
+      <div class=" mx-2 my-auto" >
+        <h5 > Type of kernel selection: </h5>
+      </div>
+      <div class=" mx-2 my-auto" >
+            <select formControlName="morphoKernelType" (change)="setNullMorpho()" class="form-control m-1">
+              <option  value="custom">custom</option>
+              <option  value="standard">standard</option>
+            </select>
+      </div>
+    </div>
+    <div *ngIf="morphoForm.get('morphoKernelType').value==='custom'">
+        <div class=" mx-2 my-auto" >
+          <h5 > Create your custom morpho kernel: </h5>
+        </div>
+
+      X size <input formControlName="customX" class="form-control" (change)="setNullMorpho()" type="number"><br>
+      Y size <input formControlName="customY" class="form-control" (change)="setNullMorpho()" type="number"><br>
+       <div *ngIf="morphoForm.get('customX').value && morphoForm.get('customY').value">
+         <h6 > Kernel values </h6>
+        <table class="table table-bordered w-auto">
+          <tbody>
+            <tr *ngFor = "let row of morphoForm.get('morphoKernel').value; let y = index">
+              <td *ngFor = "let val of row; let x = index;">
+                <input class="form-control mat-elem" [value]=val (change)="setValueToMorpho($event,x,y)" type="number">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
+    </div>
+
+    <div *ngIf="morphoForm.get('morphoKernelType').value==='standard'">
+      <div class="d-flex flex-row" >
+        <div class=" mx-2 my-auto" >
+          <h5 > Choose your standard kernel: </h5>
+        </div>
+        <div class=" mx-2 my-auto" >
+          <select formControlName="morphoKernel" class="form-control m-1">
+            <option *ngFor="let morphoKernel of standardMorphos| keyvalue" [ngValue]="morphoKernel.value"> {{morphoKernel.key}}</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="table table-bordered w-auto mx-5 my-3">
+        <tbody>
+          <tr *ngFor = "let row of morphoForm.get('morphoKernel').value">
+            <td *ngFor = "let val of row">
+              {{val}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!morphoForm.valid" (click)="uploadFileMorpho()">Apply morphological operator</button>
+
+  <div class="mt-2">
+    <app-imapo-image [img]="imageMorpho" ></app-imapo-image>
+  </div>
+</div>

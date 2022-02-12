@@ -9,6 +9,7 @@ import { ContrastComponent } from "./contrast/contrast.component";
 import { DomainComponent } from "./domain/domain.component";
 import { AiComponent } from "./ai/ai.component";
 import { FilterComponent } from "./filter/filter.component";
+import { MorphoComponent } from "./morpho/morpho.component";
 import { IntroductionComponent } from "./introduction/introduction.component";
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: "domain", component: DomainComponent },
   { path: "ai", component: AiComponent },
   { path: "filter", component: FilterComponent },
+  { path: "morpho", component: MorphoComponent },
   { path: "", component: IntroductionComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];

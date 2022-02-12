@@ -24,7 +24,10 @@ export class CropComponent implements OnInit {
     if(this.imapoService.fileToUpload)
       this.cropForm.patchValue({fileToUpload: true})
     this.cropForm.validator= this.endBiggerThanStart //TODO add a check xend and yend < image width and length
-    this.imapoService.fileToUploadChange.subscribe((f:File) => this.cropForm.patchValue({fileToUpload: true}),);
+    this.imapoService.fileToUploadChange.subscribe((f:File) => {
+        this.cropForm.patchValue({fileToUpload: true});
+        this.formChange
+    });
   }
 
   endBiggerThanStart(form: FormGroup): any {
@@ -38,7 +41,10 @@ export class CropComponent implements OnInit {
       form.controls['ystart'].setErrors(null);
   };
 
-
+  formChange(event:any=null){
+      if(this.cropForm.valid)
+        this.uploadFileCrop()
+  }
   uploadFileCrop() {
       var parameters={
         xstart:this.cropForm.get('xstart').value,

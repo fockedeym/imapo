@@ -1,0 +1,27 @@
+<div>
+  <h3>
+    Thresholder
+  </h3>
+  <p> Threshold an RGB or RGBA image to a gray image with (0,255) pixel values. The pixel value will be 255 when the following conditions are met:</p>
+  <div [formGroup]="thresholderForm">
+    <div class="d-flex flex-row "  >
+        <div class="my-auto">R between </div><input formControlName="Rstart" class="form-control m-2" type="number"><div class="my-auto"> and </div><input formControlName="Rend" class="form-control m-2" type="number">
+    </div>
+    <div class="d-flex flex-row" >
+        <div class="my-auto"> G between </div><input formControlName="Gstart" class="form-control m-2" type="number"><div class="my-auto"> and </div><input formControlName="Gend" class="form-control m-2" type="number">
+    </div>
+    <div class="d-flex flex-row" >
+        <div class="my-auto"> B between </div><input formControlName="Bstart" class="form-control m-2" type="number"><div class="my-auto"> and </div><input formControlName="Bend" class="form-control m-2" type="number">
+    </div>
+
+    <button type="button" class="btn btn-primary" name="button" [disabled]="!thresholderForm.valid" (click)="uploadFileThresholder()">Threshold image</button>
+  </div>
+
+  <div class="mt-2">
+    <app-imapo-image [img]="imageThresholder" ></app-imapo-image>
+  </div>
+  <!-- <div *ngIf="imageThresholder">
+      <button type="button" class="btn btn-primary" name="button" [disabled]="!imageThresholder" (click)="loadThresholdedImage()">Load Threshold Image</button>
+  </div> -->
+
+</div>
